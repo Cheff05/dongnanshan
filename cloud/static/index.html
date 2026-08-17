@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>枢衡殿</title>
+<link rel="stylesheet" href="/styles.css?v=20260817j">
+</head>
+<body>
+<header>
+  <h1>枢衡殿</h1>
+  <div style="display:flex;gap:6px">
+    <button id="btnSpeech" class="btn-head" onclick="this.classList.toggle('on');toggleSpeech()" title="朗读">🔇</button>
+    <button id="btnMem" class="btn-head" onclick="openMem()">记忆</button>
+    <button id="btnSess" class="btn-head" onclick="openSess()">会话</button>
+    <button id="btnHist" class="btn-head" onclick="openHist()">历史</button>
+    <button id="btnModel" class="btn-head" onclick="togglePanel('modelPanel')" style="font-size:11px">glm-5.1 ▾</button>
+    <button id="btnSearch" class="btn-head" onclick="toggleSearch()">🔎</button>
+    <button class="btn-head" onclick="newSession()">＋</button>
+  </div>
+</header>
+
+<div id="uiMask" class="mask" onclick="closeModals()"></div>
+
+<div id="histPanel" class="modal-panel">
+  <div class="m-hd"><span>历史对话</span><button class="m-close" onclick="closeModals()">✕</button></div>
+  <div class="m-body" id="histBody"></div>
+</div>
+
+<div id="memPanel" class="modal-panel">
+  <div class="m-hd"><span>🧠 记忆库</span><button class="m-close" onclick="closeModals()">✕</button></div>
+  <div class="m-body">
+    <input id="memFilter" class="mem-filter" placeholder="筛选记忆…" oninput="renderMemPanel()">
+    <div id="memCount" class="mem-count"></div>
+    <div id="memBody"></div>
+  </div>
+</div>
+
+<div id="deepPanel" class="panel" style="bottom:64px;right:8px;width:140px;padding:4px 0">
+  <div class="item" style="color:var(--muted)" onclick="setDeep(0)">关闭思考</div>
+  <div class="item" style="color:#e8a838" onclick="setDeep(1)">🟡 轻量</div>
+  <div class="item" style="color:var(--accent)" onclick="setDeep(2)">🔵 深度</div>
+  <div class="item" style="color:#e23c3c" onclick="setDeep(3)">🔴 Max</div>
+</div>
+
+<div id="modelPanel" class="panel" style="top:48px;right:8px;width:180px;padding:4px 0">
+  <div class="item" onclick="setModel('glm-5.1')">glm-5.1 🆕<span style="font-size:10px;color:var(--accent);margin-left:4px">默认</span></div>
+  <div class="item" onclick="setModel('deepseek-v4-flash-official')">deepseek-v4-flash 💰</div>
+  <div class="item" onclick="setModel('glm-5v-turbo')">glm-5v-turbo 👁️</div>
+  <div class="item" onclick="setModel('kimi-k3')">kimi-k3 🧠</div>
+  <div class="item" onclick="setModel('glm-5.3')">glm-5.3 🆕</div>
+</div>
+
+<div id="chat"><div class="hint">加载中…</div></div>
+
+<footer>
+  <div id="composer">
+    <div id="imgPreview" class="img-preview" style="display:none"></div>
+    <textarea id="input" rows="1" placeholder="说点什么…（Enter 发送，Shift+Enter 换行）"></textarea>
+  </div>
+  <button id="expandBtn" class="btn-foot" onclick="toggleExpand()" title="展开 / 收起输入区">⤢</button>
+  <input type="file" id="imgInput" accept="image/*" multiple style="display:none">
+  <button id="imgBtn" class="btn-foot" onclick="imgInput.click()" title="图片">📎</button>
+  <button id="deepToggle" class="btn-foot" onclick="togglePanel('deepPanel')" title="思考">⚡</button>
+  <button id="send">发送</button>
+</footer>
+
+<div id="searchBar" style="display:none;position:fixed;top:48px;left:8px;right:8px;z-index:60;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:8px;box-shadow:0 6px 24px rgba(0,0,0,.3)">
+  <div style="display:flex;gap:6px;align-items:center">
+    <input id="searchInput" placeholder="搜索历史对话…" style="flex:1;background:var(--surf2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px;font-size:13px">
+    <span id="searchCount" style="font-size:12px;color:var(--muted);min-width:42px;text-align:right"></span>
+    <button onclick="closeSearch()" style="background:var(--surf2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 10px;cursor:pointer">✕</button>
+  </div>
+  <div id="searchResults" style="margin-top:6px;max-height:52vh;overflow:auto"></div>
+</div>
+
+<!-- 会话抽屉 -->
+<div id="sessDrawer" class="drawer">
+  <div class="drawer-hd"><span>会话</span><button class="m-close" onclick="closeSess()">✕</button></div>
+  <div class="drawer-bar"><button class="drawer-new" onclick="newSession()">＋ 新会话</button></div>
+  <div class="drawer-body" id="sessBody"></div>
+</div>
+
+<script type="module" src="/app.js?v=20260817f"></script>
+</body>
+</html>

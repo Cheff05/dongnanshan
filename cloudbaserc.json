@@ -1,0 +1,25 @@
+{
+  "envId": "YOUR_CLOUDBASE_ENV_ID",
+  "functionRoot": "functions",
+  "functions": [
+    {
+      "name": "chat",
+      "runtime": "Nodejs20.19",
+      "timeout": 120,
+      "memorySize": 256,
+      "installDependency": true,
+      "envVariables": {}
+    },
+    {
+      "name": "chat-stream",
+      "runtime": "Nodejs20.19",
+      "timeout": 300,
+      "memorySize": 256,
+      "installDependency": true,
+      "isHttp": true,
+      "envVariables": {
+        "WSA_API_KEY": ""
+      }
+    }
+  ]
+}
