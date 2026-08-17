@@ -75,6 +75,8 @@ functions/chat-stream/index.js  （SSE 流式后端）
 
 **记忆的唯一真相源在云端 NoSQL**（`memories` / `chats` / `sessions` / `logs`）。本机 `memory/` 只是偶尔拉下来备份的快照，不参与实时读写。
 
+> 各集合的**字段结构、谁读谁写、Storage 图片桶、本地备份脚本**的详细说明，见仓库根目录 [`DATABASE.md`](./DATABASE.md)。这是搞清楚「云端数据库到底存了什么」的必读文档；尤其注意：本地 Markdown 记忆与云端 NoSQL 是**两套互不相干**的数据，本地只是云端备份快照。
+
 ---
 
 ## 3. 关键文件 · 重点看哪里

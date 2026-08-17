@@ -17,6 +17,7 @@
 | prompts/system_prompt.md | AI 人格、立场、记忆协议设定 | AI 必读 |
 | prompts/memory_rules.md | 记忆判断标准、条目格式、更新时机 | AI 必读 |
 | cloud/ | 手机端云端版（CloudBase）：云函数 + 网页 + 部署文档 | 可选 |
+| DATABASE.md | 云端 NoSQL 集合 + Storage 字段结构、读写方、本地备份脚本说明 | 文档 |
 
 ## 运作方式
 

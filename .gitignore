@@ -22,3 +22,5 @@ chats/
 backups/
 db_export/
 tools/
+# 例外：脱敏后的备份脚本本身作为文档保留（不含任何密钥/隐私路径）
+!tools/sync-memories.cjs
